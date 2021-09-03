@@ -6,4 +6,5 @@ Important Coding Questions for Placements / Interview
 
 
 Others:
--> Singly Linked List - https://github.com/dwinkwink123/Important-Coding-Questions-/blob/2e2a776e63232a05fbc9180b4f0e936c9c5ff69e/SinglyLinkedList
+
+1. Singly Linked List - https://github.com/dwinkwink123/Important-Coding-Questions-/blob/2e2a776e63232a05fbc9180b4f0e936c9c5ff69e/SinglyLinkedList
