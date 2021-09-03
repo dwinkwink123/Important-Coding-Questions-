@@ -1,0 +1,121 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node{
+    int data;
+    Node* next;
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+
+void traversal(Node* head){
+    if(head == NULL) return;
+    while(head != NULL){
+        cout<<head->data<<" ";
+        head = head->next;
+    }
+    
+    cout<<endl;
+    return;
+}
+
+Node* insertBeg(Node *head,int x){
+    Node *n = new Node(x);
+    n->next = head;
+    return n;
+}
+
+Node* insertEnd(Node* head,int x){
+    Node* n = new Node(x);
+    if(head == NULL) {
+        return n;
+    }
+    Node *curr = head;
+    while(head->next != NULL)
+        head = head->next;
+    head->next = n;
+    return curr;
+}
+
+Node* insertPos(Node* head,int pos, int x){
+    Node* n = new Node(x);
+    if(pos<=0) return head;
+    if(pos == 1){
+        return insertBeg(head,x);
+    }
+    Node* curr = head;
+    Node* p = head;
+    int cnt = 1;
+    while(cnt <= pos -2 && curr!=NULL){
+        cnt++;
+        curr = curr->next;
+    }
+    if(curr == NULL) return head;
+    n->next = p->next;
+    p->next = n;
+    return head;
+    
+}
+
+Node* delFirst(Node* head){
+    if(head == NULL) return NULL;
+    Node* temp = head->next;
+    delete head;
+    return temp;
+    
+}
+
+Node* delLast(Node* head){
+    if(head == NULL) return NULL;
+    if(head->next == NULL) {
+        delete head;
+        return NULL;
+    }
+    Node* curr = head;
+    Node* temp = head;
+    while(head->next !=NULL){
+        temp = head;
+        head = head->next;
+    } 
+    delete head;
+    temp->next = NULL;
+    return curr;
+    
+}
+
+int searchIndex(Node* head,int x){
+    //if(head->data == x) return 1;
+    Node *curr = head;
+    int cnt = 1;
+    while(curr != NULL && curr->data != x ){
+        curr = curr->next;
+        cnt++;
+    }
+    if(curr == NULL) return -1;
+    return cnt;
+}
+
+int main() {
+    
+	Node* head = NULL;
+	head = insertPos(head,1,10);
+ 	head = delFirst(head);
+    head = insertPos(head,2,20);
+ 	head = delLast(head);
+ 	head = insertEnd(head,40);
+	head = insertPos(head,3,30);
+  	head = insertEnd(head,50);
+  	head = insertEnd(head,60);
+  	head = insertBeg(head,100);
+  	head = delFirst(head);
+	head = insertPos(head,2,40);
+  	head = delLast(head);
+  	traversal(head);
+  	cout<<searchIndex(head, 50)<<",";
+  	cout<<searchIndex(head,90)<<endl;
+	
+	
+	
+}
